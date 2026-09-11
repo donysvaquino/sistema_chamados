@@ -7,11 +7,14 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser, loadingAuth } = useContext(AuthContext);
 
-  function handleRegister() {
+  async function handleRegister() {
     if (name != "" && email != "" && password != "") {
       registerUser(name, email, password);
+      setName("");
+      setEmail("");
+      setPassword("");
     }
   }
 
@@ -47,7 +50,7 @@ export default function Register() {
           className="bg-blue-700 p-7 w-full rounded-xl text-white font-bold text-xl"
           onClick={() => handleRegister()}
         >
-          Login
+          {loadingAuth ? "Carregando..." : "Cadastrar"}
         </button>
         <span className="text-white">
           Já tem uma conta?
