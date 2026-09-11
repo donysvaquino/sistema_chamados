@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/auth";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { signIn } = useContext(AuthContext);
+
+  function handleSubmit() {
+    if (email != "" && password != "") {
+      signIn(email, password);
+    }
+  }
 
   return (
     <div className="bg-gray-950 w-screen h-screen flex justify-center items-center">
@@ -26,7 +35,10 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="bg-blue-700 p-7 w-full rounded-xl text-white font-bold text-xl">
+        <button
+          className="bg-blue-700 p-7 w-full rounded-xl text-white font-bold text-xl"
+          onClick={() => handleSubmit()}
+        >
           Login
         </button>
         <span className="text-white">
