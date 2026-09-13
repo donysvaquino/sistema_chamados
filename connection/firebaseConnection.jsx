@@ -1,23 +1,38 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAAqrm73-e156kkqTdsRx4oLcnXJww_8wI",
-  authDomain: "chamados-77f00.firebaseapp.com",
-  projectId: "chamados-77f00",
-  storageBucket: "chamados-77f00.firebasestorage.app",
-  messagingSenderId: "319648820074",
-  appId: "1:319648820074:web:65e51db1bf0a49b5c55313",
-  measurementId: "G-TDC0WQ0YLC",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
+const requiredVariables = [
+  "VITE_FIREBASE_API_KEY",
+  "VITE_FIREBASE_AUTH_DOMAIN",
+  "VITE_FIREBASE_PROJECT_ID",
+  "VITE_FIREBASE_STORAGE_BUCKET",
+  "VITE_FIREBASE_MESSAGING_SENDER_ID",
+  "VITE_FIREBASE_APP_ID",
+];
+
+const missingVariables = requiredVariables.filter(
+  (variable) => !import.meta.env[variable],
+);
+
+if (missingVariables.length > 0) {
+  throw new Error(
+    `Configuração do Firebase incompleta. Variáveis ausentes: ${missingVariables.join(
+      ", ",
+    )}`,
+  );
+}
+
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
