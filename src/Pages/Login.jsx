@@ -8,9 +8,9 @@ export default function Login() {
 
   const { signIn } = useContext(AuthContext);
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (email != "" && password != "") {
-      signIn(email, password);
+      await signIn(email, password);
     }
   }
 
@@ -37,7 +37,8 @@ export default function Login() {
             Chamados organizados. Equipe mais eficiente.
           </h1>
           <p className="mt-6 max-w-lg text-lg leading-8 text-blue-100">
-            Acompanhe solicitações, prioridades e atendimentos em um único lugar.
+            Acompanhe solicitações, prioridades e atendimentos em um único
+            lugar.
           </p>
         </div>
 

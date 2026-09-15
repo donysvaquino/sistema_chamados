@@ -41,7 +41,8 @@ export default function Register() {
             Centralize o atendimento da sua equipe.
           </h1>
           <p className="mt-6 max-w-lg text-lg leading-8 text-blue-100">
-            Crie sua conta e tenha uma visão clara de todos os chamados em andamento.
+            Crie sua conta e tenha uma visão clara de todos os chamados em
+            andamento.
           </p>
         </div>
 
