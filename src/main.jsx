@@ -8,6 +8,7 @@ import Login from "./Pages/Login.jsx";
 import Register from "./Pages/Register.jsx";
 import AuthProvider from "./contexts/auth.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
+import Private from "./Private.jsx";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -36,7 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <Private>
+            <Dashboard />
+          </Private>
+        ),
       },
     ],
   },

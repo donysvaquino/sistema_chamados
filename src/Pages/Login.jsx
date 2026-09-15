@@ -6,7 +6,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn } = useContext(AuthContext);
+  const { signIn, loadingAuth } = useContext(AuthContext);
 
   async function handleSubmit() {
     if (email != "" && password != "") {
@@ -102,7 +102,7 @@ export default function Login() {
                 className="mt-2 w-full rounded-xl bg-blue-700 px-5 py-4 text-base font-extrabold text-white shadow-lg shadow-blue-700/20 transition hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-200 active:scale-[0.99]"
                 onClick={() => handleSubmit()}
               >
-                Entrar
+                {loadingAuth ? "Entrando..." : "Entrar"}
               </button>
             </div>
 
